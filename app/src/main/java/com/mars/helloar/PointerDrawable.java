@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,8 +29,10 @@ public class PointerDrawable extends Drawable {
             paint.setColor(Color.GREEN);
             canvas.drawCircle(cx, cy, 10, paint);
         } else {
-            paint.setColor(Color.GRAY);
-            canvas.drawText("N/A", cx, cy, paint);
+            paint.setColor(Color.RED);
+            canvas.drawCircle(cx, cy, 10, paint);
+            //paint.setColor(Color.GRAY);
+            //canvas.drawText("N/A", cx, cy, paint);
         }
     }
 
@@ -45,6 +48,6 @@ public class PointerDrawable extends Drawable {
 
     @Override
     public int getOpacity() {
-        return 0;
+        return PixelFormat.UNKNOWN;// 0;
     }
 }
