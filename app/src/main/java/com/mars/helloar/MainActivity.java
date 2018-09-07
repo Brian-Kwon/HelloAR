@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 Trackable trackable = hit.getTrackable();
                 if ((trackable instanceof Plane &&
                         ((Plane) trackable).isPoseInPolygon(hit.getHitPose()))) {
-                    placeObject(fragment, hit.createAnchor(), model);
+                    placeObject(fragment, hit, model);
                     break;
 
                 }
@@ -206,12 +206,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void placeObject(ArFragment fragment, Anchor anchor, Uri model) {
+    private void placeObject(ArFragment fragment, HitResult hit, Uri model) {
         CompletableFuture<Void> renderableFuture =
                 ModelRenderable.builder()
                         .setSource(fragment.getContext(), model)
                         .build()
-                        .thenAccept(renderable -> addNodeToScene(fragment, anchor, renderable))
+                        .thenAccept(renderable -> addNodeToScene(fragment, hit, renderable))
                         .exceptionally((throwable -> {
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setMessage(throwable.getMessage())
@@ -222,8 +222,8 @@ public class MainActivity extends AppCompatActivity {
                         }));
     }
 
-    private void addNodeToScene(ArFragment fragment, Anchor anchor, Renderable renderable) {
-        AnchorNode anchorNode = new AnchorNode(anchor);
+    private void addNodeToScene(ArFragment fragment, HitResult hit, Renderable renderable) {
+        AnchorNode anchorNode = new AnchorNode(hit.createAnchor());
         TransformableNode node = new TransformableNode(fragment.getTransformationSystem());
         node.setRenderable(renderable);
         node.setParent(anchorNode);
