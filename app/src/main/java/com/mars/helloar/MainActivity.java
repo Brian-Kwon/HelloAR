@@ -163,29 +163,33 @@ public class MainActivity extends AppCompatActivity {
     private void initializeGallery() {
         LinearLayout gallery = findViewById(R.id.gallery_layout);
 
-        ImageView andy = new ImageView(this);
-        andy.setImageResource(R.drawable.droid_thumb);
-        andy.setContentDescription("andy");
-        andy.setOnClickListener(view ->{addObject(Uri.parse("andy.sfb"));});
-        gallery.addView(andy);
+        for (int j = 0; j <= 2; j++) {
 
-        ImageView cabin = new ImageView(this);
-        cabin.setImageResource(R.drawable.cabin_thumb);
-        cabin.setContentDescription("cabin");
-        cabin.setOnClickListener(view ->{addObject(Uri.parse("Cabin.sfb"));});
-        gallery.addView(cabin);
+            ImageView andy = new ImageView(this);
+            andy.setImageResource(R.drawable.droid_thumb);
+            andy.setContentDescription("andy");
+            andy.setOnClickListener(view ->{addObject(Uri.parse("andy.sfb"));});
+            gallery.addView(andy);
 
-        ImageView house = new ImageView(this);
-        house.setImageResource(R.drawable.house_thumb);
-        house.setContentDescription("house");
-        house.setOnClickListener(view ->{addObject(Uri.parse("House.sfb"));});
-        gallery.addView(house);
+            ImageView cabin = new ImageView(this);
+            cabin.setImageResource(R.drawable.cabin_thumb);
+            cabin.setContentDescription("cabin");
+            cabin.setOnClickListener(view ->{addObject(Uri.parse("Cabin.sfb"));});
+            gallery.addView(cabin);
 
-        ImageView igloo = new ImageView(this);
-        igloo.setImageResource(R.drawable.igloo_thumb);
-        igloo.setContentDescription("igloo");
-        igloo.setOnClickListener(view ->{addObject(Uri.parse("igloo.sfb"));});
-        gallery.addView(igloo);
+            ImageView house = new ImageView(this);
+            house.setImageResource(R.drawable.house_thumb);
+            house.setContentDescription("house");
+            house.setOnClickListener(view ->{addObject(Uri.parse("House.sfb"));});
+            gallery.addView(house);
+
+            ImageView igloo = new ImageView(this);
+            igloo.setImageResource(R.drawable.igloo_thumb);
+            igloo.setContentDescription("igloo");
+            igloo.setOnClickListener(view ->{addObject(Uri.parse("igloo.sfb"));});
+            gallery.addView(igloo);
+
+        }
     }
 
     private void addObject(Uri model) {
@@ -283,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                     File photoFile = new File(filename);
 
                     Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
-                            MainActivity.this.getPackageName() + ".ar.codelab.name.provider",
+                            MainActivity.this.getPackageName() + ".ar.helloar.name.provider",
                             photoFile);
                     Intent intent = new Intent(Intent.ACTION_VIEW, photoURI);
                     intent.setDataAndType(photoURI, "image/*");
